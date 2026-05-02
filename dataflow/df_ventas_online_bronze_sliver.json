@@ -45,6 +45,9 @@
 				},
 				{
 					"name": "filter1"
+				},
+				{
+					"name": "select2"
 				}
 			],
 			"scriptLines": [
@@ -104,7 +107,21 @@
 				"          cantidad = toInteger(cantidad)) ~> derivedColumn4",
 				"derivedColumn4 derive(fecha = coalesce(toDate(fecha,'yyyy-MM-dd'),toDate(fecha,'dd-MM-yyyy'),toDate(fecha,'MM-dd-yyyy'),toDate(fecha,'dd/MM/yyyy'),toDate(fecha,'yyyy/MM/dd'),toDate(fecha,'dd/MMM/yyyy'),toDate(fecha,'dd-MMM-yyyy'),toDate(fecha,\"dd 'de' MMMM 'de' yyyy\"),toDate(fecha, \"MMMM dd, yyyy\"))) ~> derivedColumn5",
 				"derivedColumn5 filter(cantidad>0 && !isNull(precio_unitario) && !isNull(fecha)) ~> filter1",
-				"filter1 sink(allowSchemaDrift: true,",
+				"filter1 select(mapColumn(",
+				"          id_venta,",
+				"          fecha,",
+				"          producto,",
+				"          cantidad,",
+				"          precio_unitario,",
+				"          cliente_nombre,",
+				"          cliente_email,",
+				"          sucursal,",
+				"          metodo_pago,",
+				"          vendedor",
+				"     ),",
+				"     skipDuplicateMapInputs: true,",
+				"     skipDuplicateMapOutputs: true) ~> select2",
+				"select2 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     partitionFileNames:['ventas_online_limpio.csv'],",
 				"     umask: 0022,",

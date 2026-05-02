@@ -6,11 +6,62 @@
 		},
 		"type": "MappingDataFlow",
 		"typeProperties": {
-			"sources": [],
+			"sources": [
+				{
+					"dataset": {
+						"referenceName": "limpio_scz",
+						"type": "DatasetReference"
+					},
+					"name": "source1"
+				},
+				{
+					"dataset": {
+						"referenceName": "limpio_lpz",
+						"type": "DatasetReference"
+					},
+					"name": "source2"
+				}
+			],
 			"sinks": [],
-			"transformations": [],
+			"transformations": [
+				{
+					"name": "union1"
+				}
+			],
 			"scriptLines": [
-				""
+				"source(output(",
+				"          id_venta as string,",
+				"          fecha as string,",
+				"          producto as string,",
+				"          cantidad as string,",
+				"          precio_unitario as string,",
+				"          sucursal as string,",
+				"          vendedor as string,",
+				"          cliente_nombre as string,",
+				"          cliente_email as string,",
+				"          metodo_pago as string,",
+				"          canal as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source1",
+				"source(output(",
+				"          id_venta as string,",
+				"          fecha as string,",
+				"          producto as string,",
+				"          cantidad as string,",
+				"          precio_unitario as string,",
+				"          sucursal as string,",
+				"          vendedor as string,",
+				"          nombre_cliente as string,",
+				"          cliente_email as string,",
+				"          {metodo_pago } as string,",
+				"          canal as string",
+				"     ),",
+				"     allowSchemaDrift: true,",
+				"     validateSchema: false,",
+				"     ignoreNoFilesFound: false) ~> source2",
+				"source1, source2 union(byName: true)~> union1"
 			]
 		}
 	}

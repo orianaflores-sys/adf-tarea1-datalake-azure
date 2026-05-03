@@ -85,7 +85,7 @@
 				"          producto as string,",
 				"          cantidad as string,",
 				"          precio_unitario as string,",
-				"          nombre_cliente as string,",
+				"          cliente_nombre as string,",
 				"          cliente_email as string,",
 				"          sucursal as string,",
 				"          metodo_pago as string,",

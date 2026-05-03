@@ -44,7 +44,7 @@
 				"type": "String"
 			},
 			{
-				"name": "nombre_cliente",
+				"name": "cliente_nombre",
 				"type": "String"
 			},
 			{

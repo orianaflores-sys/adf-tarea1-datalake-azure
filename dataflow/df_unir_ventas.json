@@ -40,10 +40,10 @@
 			],
 			"transformations": [
 				{
-					"name": "union1"
+					"name": "union2"
 				},
 				{
-					"name": "union2"
+					"name": "union3"
 				}
 			],
 			"scriptLines": [
@@ -94,8 +94,8 @@
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     ignoreNoFilesFound: false) ~> source3",
-				"source1, source2 union(byName: true)~> union1",
-				"union1, source3 union(byName: true)~> union2",
+				"union3, source3 union(byName: true)~> union2",
+				"source1, source2 union(byName: true)~> union3",
 				"union2 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     partitionFileNames:['unio_limpio_ventas.csv'],",

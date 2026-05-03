@@ -12,21 +12,21 @@
 						"referenceName": "limpio_scz",
 						"type": "DatasetReference"
 					},
-					"name": "source1"
+					"name": "source4"
 				},
 				{
 					"dataset": {
 						"referenceName": "limpio_lpz",
 						"type": "DatasetReference"
 					},
-					"name": "source2"
+					"name": "source5"
 				},
 				{
 					"dataset": {
 						"referenceName": "limpio_ventas_online",
 						"type": "DatasetReference"
 					},
-					"name": "source3"
+					"name": "source6"
 				}
 			],
 			"sinks": [
@@ -62,7 +62,7 @@
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> source1",
+				"     ignoreNoFilesFound: false) ~> source4",
 				"source(output(",
 				"          id_venta as string,",
 				"          fecha as string,",
@@ -78,7 +78,7 @@
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> source2",
+				"     ignoreNoFilesFound: false) ~> source5",
 				"source(output(",
 				"          id_venta as string,",
 				"          fecha as string,",
@@ -93,9 +93,9 @@
 				"     ),",
 				"     allowSchemaDrift: true,",
 				"     validateSchema: false,",
-				"     ignoreNoFilesFound: false) ~> source3",
-				"union3, source3 union(byName: true)~> union2",
-				"source1, source2 union(byName: true)~> union3",
+				"     ignoreNoFilesFound: false) ~> source6",
+				"union3, source6 union(byName: true)~> union2",
+				"source4, source5 union(byName: true)~> union3",
 				"union2 sink(allowSchemaDrift: true,",
 				"     validateSchema: false,",
 				"     partitionFileNames:['unio_limpio_ventas.csv'],",

@@ -52,7 +52,7 @@
 				"type": "String"
 			},
 			{
-				"name": "nombre_cliente",
+				"name": "cliente_nombre",
 				"type": "String"
 			},
 			{
@@ -60,7 +60,7 @@
 				"type": "String"
 			},
 			{
-				"name": "metodo_pago ",
+				"name": "metodo_pago",
 				"type": "String"
 			},
 			{
